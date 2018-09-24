@@ -33,6 +33,10 @@ Stepfile:
      HomePage.clickAboutButton();
      AssertThat(driver.getTitle().contains("About"));
 
+PageObject file:
+public void clickAboutbutton(){
+ find(By.linkText("About").click();}
+
 
 
 Scenario: Verify Work page title as a user
@@ -46,6 +50,10 @@ Stepfile:
      HomePage.clickWorkButton();
      AssertThat(driver.getTitle().contains("Work"));
 
+PageObject file:
+public void clickWorkbutton(){
+ find(By.linkText("Work").click();}
+
 
 Scenario: Verify Services page title as a user
   Given: Iam on Valtech Home Page
@@ -58,13 +66,17 @@ Stepfile:
      HomePage.clickServicesButton();
      AssertThat(driver.getTitle().contains("Services"));
 
+PageObject file:
+public void clickServicesbutton(){
+ find(By.linkText("Services").click();}
+
 
 3. Feature: Count of Valtech offices 
 
 Scenario: Check Valtech Offices contacts as a user
   Given: Iam on Valtech Home Page
   When: I navigate to contact-us Page
-  Then I verify expected offices count is displayed
+  Then I find the total offices count 
 
 
 
@@ -79,7 +91,7 @@ PAGE OBJECT file:
 public WebElement offices
 
 public void getOfficesCount(){
-int officesCount = findByElements(By.classname("office-country__container"));
+int officesCount = findElements(By.classname("office-country__container"));
 return officesCount;
 }
 
