@@ -1,0 +1,92 @@
+1. Feature: Verify Recent Blogs section in Valtech
+
+Scenario: Enter Valtech site as a user
+  Given: Iam on Valtech Home Page
+  When: I navigate to Recent Blogs section
+  Then I verify Recent Blogs section is displayed
+
+
+Stepfile:
+  WebDriver.Navigate().GoToUrl()("www.Valtech.co.uk");
+     Assert.IStrue("Recent Blog not present",homePage.isBlogsPresent());
+
+
+PageObject Model:
+FindBy(linkText="recent Blogs")
+WebElemnent headerBlogs
+
+public void isBlogsDisplayed(){
+ return isElementPresent(headerBlogs);
+}
+
+
+2. Feature: Verify Page Titles in Valtech
+
+Scenario: Verify About page title as a user
+  Given: Iam on Valtech Home Page
+  When: I navigate to About Page
+  Then I verify title is displayed
+
+
+Stepfile:
+  WebDriver.Navigate().GoToUrl()("www.Valtech.co.uk");
+     HomePage.clickAboutButton();
+     AssertThat(driver.getTitle().contains("About"));
+
+
+
+Scenario: Verify Work page title as a user
+  Given: Iam on Valtech Home Page
+  When: I navigate to Work Page
+  Then I verify title is displayed
+
+
+Stepfile:
+  WebDriver.Navigate().GoToUrl()("www.Valtech.co.uk");
+     HomePage.clickWorkButton();
+     AssertThat(driver.getTitle().contains("Work"));
+
+
+Scenario: Verify Services page title as a user
+  Given: Iam on Valtech Home Page
+  When: I navigate to Services Page
+  Then I verify title is displayed
+
+
+Stepfile:
+  WebDriver.Navigate().GoToUrl()("www.Valtech.co.uk");
+     HomePage.clickServicesButton();
+     AssertThat(driver.getTitle().contains("Services"));
+
+
+3. Feature: Count of Valtech offices 
+
+Scenario: Check Valtech Offices contacts as a user
+  Given: Iam on Valtech Home Page
+  When: I navigate to contact-us Page
+  Then I verify expected offices count is displayed
+
+
+
+Stepfile:
+  WebDriver.Navigate().GoToUrl()("www.Valtech.co.uk/about/contact-us");
+     AssertThat(driver.getTitle().contains("Contact")); 
+     int officesCount = contactPage.getOfficeCount();
+
+PAGE OBJECT file:
+
+@FindBy(classname= "office-country__container")
+public WebElement offices
+
+public void getOfficesCount(){
+int officesCount = findByElements(By.classname("office-country__container"));
+return officesCount;
+}
+
+
+
+
+
+
+
+
